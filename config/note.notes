@@ -1,0 +1,16 @@
+./vendor/bin/sail artisan reverb:start
+
+./vendor/bin/sail artisan octane:start --host=0.0.0.0 --port=8000
+
+Ordem correta
+
+👉 1º Reverb → 2º Octane
+
+💡 Por quê?
+Reverb é o servidor de WebSocket (infra de tempo real)
+Octane é quem vai servir a aplicação que usa o Reverb
+
+Se o Octane subir antes:
+
+Ele pode tentar usar broadcasting sem o Reverb disponível
+Pode gerar erro/intermitência em eventos realtime
